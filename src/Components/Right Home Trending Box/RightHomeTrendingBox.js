@@ -4,14 +4,7 @@ import styles from "./RightHomeTrendingBox.module.css";
 import RightMoreButtonPopover from "../../Molecules/Right More Button Popover/RightMoreButtonPopover";
 
 const RightHomeTrendingBox = () => {
-  const [isInterested, setIsInterested] = useState(false);
-
-  function setInterestedStatus() {
-    setIsInterested(true);
-    // console.log(setIsInterested, "Interest shown");
-  }
-
-  const trendingData = [
+  const [trendingData, setTrendingData] = useState([
     {
       title1: "Trending in India",
       title2: "#Corruption 💸",
@@ -47,23 +40,40 @@ const RightHomeTrendingBox = () => {
       isNotInterested: false,
       id: 5,
     },
-  ];
+  ]);
+
+  function updateIsNotInterested(id, value) {
+    const updatedData = trendingData.map((data) => {
+      if (data.id === id) {
+        return { ...data, isNotInterested: value };
+      }
+      return data;
+    });
+    setTrendingData(updatedData);
+  }
+
   return (
     <div className={styles.TrendingBoxMainContainer}>
       <h3 className={styles.TrendingBoxHeadingContainer}>What's happening?</h3>
-      {trendingData.map((button, index) => (
-        <button key={index} className={styles.TrendingBoxButtonContainer}>
-          <div className={styles.TrendingBox}>
-            <div> {button.title1}</div>
-            <div style={{ fontWeight: "bold" }}> {button.title2}</div>
-            <div> {button.title3}</div>
-          </div>
-          <span onClick={setInterestedStatus}>
-            <RightMoreButtonPopover />
-          </span>
-        </button>
-      ))}
-      <p className={styles.TrendingBoxShowMoreContainer}>Show more</p>
+      {trendingData.map(
+        (button) =>
+          !button.isNotInterested && (
+            <button
+              key={button.id}
+              className={styles.TrendingBoxButtonContainer}
+            >
+              <div className={styles.TrendingBox}>
+                <div> {button.title1}</div>
+                <div style={{ fontWeight: "bold" }}> {button.title2}</div>
+                <div> {button.title3}</div>
+              </div>
+              <RightMoreButtonPopover
+                updateIsNotInterested={updateIsNotInterested}
+                id={button.id}
+              />
+            </button>
+          )
+      )}
     </div>
   );
 };

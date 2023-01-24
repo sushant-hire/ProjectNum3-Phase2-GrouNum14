@@ -5,7 +5,7 @@ import Popover from "@mui/material/Popover";
 import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
-const RightMoreButtonPopover = () => {
+const RightMoreButtonPopover = ({ updateIsNotInterested, id }) => {
   return (
     <PopupState variant="popover" popupId="demo-popup-popover">
       {(popupState) => (
@@ -23,11 +23,15 @@ const RightMoreButtonPopover = () => {
               horizontal: "center",
             }}
           >
-            <Typography className={styles.PopoverOptions} sx={{ p: 2 }}>
-              Not interested in this{" "}
+            <Typography
+              className={styles.PopoverOptions}
+              sx={{ p: 2 }}
+              onClick={() => updateIsNotInterested(id, true)}
+            >
+              Not interested in this
             </Typography>
             <Typography className={styles.PopoverOptions} sx={{ p: 2 }}>
-              This trend is harmful or spammy{" "}
+              This trend is harmful or spammy
             </Typography>
           </Popover>
         </div>
