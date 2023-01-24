@@ -1,0 +1,12 @@
+.MiddleHomeTweetBoxButtonContainer {
+  padding-bottom: 1.5rem;
+  width: 36rem;
+  background-color: white;
+  border: none;
+}
+
+.MiddleHomeTweetBoxGrid {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
+}
+

@@ -1,0 +1,5 @@
+.MiddleParentContainer {
+    display: grid;
+    grid-template-rows: 0.5fr 10fr;
+    padding-right: 2rem;
+}
